@@ -26,6 +26,13 @@ build:
     - CI
     - TRAVIS
 
+requirements:
+  build:
+    - libtool
+    - pkg-config >=0.23
+    - autoconf >=2.64
+    - automake >=1.14
+
 test:
   commands:
     - openocd -v

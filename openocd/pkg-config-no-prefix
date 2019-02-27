@@ -1,0 +1,14 @@
+#! /bin/sh
+# Conda's pkg-config is compiled with "--enable-define-prefix", which attempts
+# to guess "prefix" from the *location* of the .pc file, rather than using
+# the value *in* the .pc file.  This causes config generated from our host .pc
+# files to break (/usr/lib/include/... instead of /usr/include/..).  So
+# we need a wrapper that overrides this pkg-config behaviour.
+#
+# To use this:
+#
+# export PKG_CONFIG="${RECIPE_DIR}/pkg-config-no-prefix"
+# ./configure ...
+#---------------------------------------------------------------------------
+
+exec pkg-config --dont-define-prefix "$@"
